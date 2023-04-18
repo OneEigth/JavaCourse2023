@@ -1,0 +1,586 @@
+Тема: Работа со строками (String) в Java
+
+I. Введение в класс String
+
+Определение и особенности класса String:
+
+В Java класс String является одним из базовых классов для работы со строками.
+Он представляет неизменяемую (immutable) последовательность символов.
+Строки в Java хранятся в пуле строк (string pool), что позволяет повысить производительность при работе с одинаковыми
+строками.
+Строки в Java являются объектами, и для их создания можно использовать оператор "new" или литералы строк.
+Класс String находится в пакете java.lang и не требует импорта.
+
+Создание строк в Java:
+
+Использование литералов строк: например, String str = "Hello";
+Использование оператора "new" для создания объекта строки: например, String str = new String("Hello");
+
+Основные операции со строками:
+
+1) Конкатенация строк: использование оператора "+" или метода concat()
+Метод concat() - это метод класса String, который используется для конкатенации (соединения) двух строк.
+Он создает и возвращает новую строку, которая является результатом объединения исходных строк.
+
+Синтаксис метода concat():
+
+String concat(String str)
+Параметры:
+str: строка, которая будет добавлена в конец исходной строки.
+
+Возвращаемое значение:
+Новая строка, полученная в результате объединения исходной строки и строки, переданной в качестве аргумента.
+
+Пример: Конкатенация строк
+
+String firstName = "John";
+String lastName = "Doe";
+String fullName = firstName + " " + lastName;
+System.out.println(fullName); // Выводит: John Doe
+
+String str1 = "Hello";
+String str2 = "World";
+String result = str1.concat(", ").concat(str2); // Конкатенация строк с использованием метода concat()
+System.out.println(result); // Выводит: Hello, World
+
+2) Сравнение строк: использование операторов "==" и "equals()" для сравнения строк на идентичность и содержимое
+соответственно
+
+Пример 2: Сравнение строк
+
+String str1 = "Hello";
+String str2 = "Hello";
+String str3 = new String("Hello");
+System.out.println(str1 == str2); // Выводит: true, т.к. строки сравниваются по ссылкам и имеют одну и ту же ссылку на пул строк
+System.out.println(str1.equals(str3)); // Выводит: true, т.к. строки содержат одинаковое значение
+
+3) Поиск подстроки в строке: использование методов indexOf() и lastIndexOf()
+Метод indexOf() - это метод класса String, который используется для поиска первого вхождения подстроки в строке.
+Он возвращает индекс (позицию) первого вхождения подстроки в строке, или -1, если подстрока не найдена.
+
+Синтаксис метода indexOf():
+
+int indexOf(String str)
+Параметры:
+
+str: подстрока, которую нужно найти в строке.
+Возвращаемое значение:
+
+Индекс (позиция) первого вхождения подстроки в строке, или -1, если подстрока не найдена.
+
+Пример:
+
+String str = "Hello, World";
+int index = str.indexOf("World"); // Поиск индекса первого вхождения подстроки "World"
+System.out.println(index); // Выводит: 7
+
+Метод lastIndexOf() - это метод класса String, который используется для поиска последнего вхождения подстроки в строке.
+Он возвращает индекс (позицию) последнего вхождения подстроки в строке, или -1, если подстрока не найдена.
+
+Синтаксис метода lastIndexOf():
+
+int lastIndexOf(String str)
+Параметры:
+
+str: подстрока, которую нужно найти в строке.
+Возвращаемое значение:
+
+Индекс (позиция) последнего вхождения подстроки в строке, или -1, если подстрока не найдена.
+Пример:
+
+String str = "Hello, World, World";
+int lastIndex = str.lastIndexOf("World"); // Поиск индекса последнего вхождения подстроки "World"
+System.out.println(lastIndex); // Выводит: 13
+
+
+4) Замена подстроки в строке: использование методов replace() и replaceAll()
+Метод replace() - это метод класса String, который используется для замены всех вхождений указанной подстроки на другую
+подстроку в строке.
+
+Синтаксис метода replace():
+
+String replace(CharSequence target, CharSequence replacement)
+
+Параметры:
+
+target: подстрока, которую нужно заменить.
+replacement: подстрока, на которую нужно заменить.
+Возвращаемое значение: Новая строка с замененными подстроками.
+
+Пример:
+
+String str = "Hello, World";
+String replacedStr = str.replace("World", "Java"); // Замена всех вхождений "World" на "Java"
+System.out.println(replacedStr); // Выводит: "Hello, Java"
+Метод replaceAll() - это метод класса String, который используется для замены всех вхождений указанного регулярного
+выражения на другую подстроку в строке.
+
+Синтаксис метода replaceAll():
+
+String replaceAll(String regex, String replacement)
+
+Параметры:
+regex: регулярное выражение, которое определяет подстроки, которые нужно заменить.
+replacement: подстрока, на которую нужно заменить.
+Возвращаемое значение: Новая строка с замененными подстроками.
+Пример:
+
+String str = "Hello, World";
+String replacedStr = str.replaceAll("W\\w+", "Java"); // Замена всех слов, начинающихся с "W", на "Java"
+System.out.println(replacedStr); // Выводит: "Hello, Java"
+
+5) Изменение регистра символов: использование методов toLowerCase() и toUpperCase()
+Метод toLowerCase() - это метод класса String, который используется для преобразования всех символов в строке в нижний регистр.
+
+Синтаксис метода toLowerCase():
+
+String toLowerCase()
+Параметры: нет
+Возвращаемое значение: Новая строка, в которой все символы преобразованы в нижний регистр.
+
+Пример:
+
+String str = "Hello, World";
+String lowerStr = str.toLowerCase(); // Преобразование всех символов в нижний регистр
+System.out.println(lowerStr); // Выводит: "hello, world"
+Метод toUpperCase() - это метод класса String, который используется для преобразования всех символов в строке в верхний регистр.
+
+Синтаксис метода toUpperCase():
+
+String toUpperCase()
+
+Параметры: нет
+Возвращаемое значение: Новая строка, в которой все символы преобразованы в верхний регистр.
+
+Пример:
+
+String str = "Hello, World";
+String upperStr = str.toUpperCase(); // Преобразование всех символов в верхний регистр
+System.out.println(upperStr); // Выводит: "HELLO, WORLD"
+
+
+6) Извлечение символов и подстрок: использование методов charAt(), length(), substring() и trim().
+Метод charAt() - это метод класса String, который используется для получения символа строки по указанному индексу.
+
+Синтаксис метода charAt():
+char charAt(int index)
+Параметры: index: индекс символа в строке, начиная с 0.
+Возвращаемое значение: Символ строки, находящийся на указанном индексе.
+
+Пример:
+
+String str = "Hello";
+char ch = str.charAt(0); // Получение символа по индексу 0
+System.out.println(ch); // Выводит: "H"
+Метод length() - это метод класса String, который используется для получения длины строки, то есть количества символов
+в ней.
+
+Синтаксис метода length():
+
+int length()
+Параметры: отсутствуют.
+Возвращаемое значение:Количество символов в строке.
+
+Пример:
+
+String str = "Hello";
+int len = str.length(); // Получение длины строки
+System.out.println(len); // Выводит: "5"
+
+Метод substring() - это метод класса String, который используется для получения подстроки из строки на основе указанных
+начального и конечного индексов.
+
+Синтаксис метода substring():
+
+String substring(int beginIndex, int endIndex)
+Параметры:
+beginIndex: индекс первого символа подстроки, начиная с 0.
+endIndex: индекс символа, следующего за последним символом подстроки.
+Возвращаемое значение: Новая строка, содержащая подстроку из исходной строки.
+Пример:
+
+String str = "Hello, World";
+String substr = str.substring(0, 5); // Получение подстроки с индекса 0 до 4 (не включая 5)
+System.out.println(substr); // Выводит: "Hello"
+
+Метод trim() - это метод класса String, который используется для удаления начальных и конечных пробелов
+(или других символов-разделителей) из строки.
+
+Синтаксис метода trim():
+String trim()
+Параметры: отсутствуют.
+Возвращаемое значение: Новая строка, содержащая исходную строку без начальных и конечных пробелов.
+
+Пример:
+
+String str = "   Hello, World   ";
+String trimmedStr = str.trim(); // Удаление начальных и конечных пробелов
+System.out.println(trimmedStr); // Выводит: "Hello, World"
+
+7) Методы startsWith(String prefix) и endsWith(String suffix) в классе String предназначены для проверки,
+начинается ли строка с определенного префикса или заканчивается ли она определенным суффиксом соответственно.
+Оба метода возвращают булевое значение true, если условие выполняется, и false в противном случае.
+
+   Пример использования методов startsWith() и endsWith():
+
+   public class StringManipulation {
+       public static void main(String[] args) {
+           String str1 = "Hello, world!";
+           String str2 = "Java is awesome";
+           String str3 = "Hello";
+
+           // Метод startsWith()
+           System.out.println(str1.startsWith("Hello")); // true
+           System.out.println(str2.startsWith("Java")); // true
+           System.out.println(str3.startsWith("Hi")); // false
+
+           // Метод endsWith()
+           System.out.println(str1.endsWith("world!")); // true
+           System.out.println(str2.endsWith("awesome")); // true
+           System.out.println(str3.endsWith("world")); // false
+       }
+   }
+
+8) Метод split(String regex) в классе String используется для разделения строки на подстроки на основе заданного
+регулярного выражения (regex) в качестве разделителя. Метод возвращает массив строк, полученных после разделения
+исходной строки.
+
+  Пример использования метода split():
+
+  public class StringManipulation {
+      public static void main(String[] args) {
+          String str = "Java,is,awesome";
+
+          // Разделение строки на подстроки с использованием запятой в качестве разделителя
+          String[] arr = str.split(",");
+
+          // Вывод разделенных подстрок
+          for (String s : arr) {
+              System.out.println(s);
+          }
+      }
+  }
+
+II. Методы класса String
+
+Методы для работы с символами и подстроками:
+
+charAt(int index)
+length()
+substring(int beginIndex, int endIndex)
+trim()
+toLowerCase() и toUpperCase()
+
+Методы для поиска и замены:
+
+indexOf(String str) и lastIndexOf(String str)
+replace(char oldChar, char newChar) и replace(CharSequence target, CharSequence replacement)
+startsWith(String prefix) и endsWith(String suffix)
+split(String regex)
+
+III. Работа с символами и подстроками
+
+Использование оператора "+" для конкатенации строк
+Использование метода StringBuilder для эффективной конкатенации строк
+StringBuilder - это класс в Java, который представляет изменяемую строку, которую можно модифицировать без создания
+новых объектов. Он предоставляет методы для эффективной работы со строками, особенно когда требуется частое изменение
+содержимого строки, так как изменение объекта String может создавать множество временных объектов в памяти, что может
+быть неэффективно в производительности.
+
+Особенности класса StringBuilder:
+
+Изменяемость: StringBuilder предоставляет методы для добавления, удаления и изменения символов внутри строки без
+создания новых объектов.
+
+Мутабельность: Объект StringBuilder может быть изменен напрямую, без создания нового объекта.
+Методы для работы со строками: StringBuilder предоставляет множество методов для работы со строками, таких как append(),
+delete(), insert(), replace(), reverse(), и др.
+
+Потокобезопасность: StringBuilder не является потокобезопасным, то есть не рекомендуется использовать его в
+многопоточных средах без соответствующих мер предосторожности.
+
+Работа с памятью: StringBuilder управляет внутренним буфером, который может автоматически расширяться, поэтому он более
+эффективен в использовании памяти, чем создание множества временных объектов String.
+
+Ниже приведены некоторые из наиболее часто используемых методов класса StringBuilder:
+
+append(String str): добавляет указанную строку str в конец текущего StringBuilder объекта.
+
+StringBuilder sb = new StringBuilder("Hello");
+sb.append(", world!"); // "Hello, world!"
+
+insert(int offset, String str): вставляет указанную строку str в текущий StringBuilder объект на указанную
+позицию offset.
+
+StringBuilder sb = new StringBuilder("Hello");
+sb.insert(5, ", world!"); // "Hello, world!"
+
+delete(int start, int end): удаляет символы из текущего StringBuilder объекта, начиная с позиции start (включительно)
+до позиции end (исключительно).
+
+StringBuilder sb = new StringBuilder("Hello, world!");
+sb.delete(7, 13); // "Hello!"
+
+replace(int start, int end, String str): заменяет символы в текущем StringBuilder объекте, начиная с позиции start
+(включительно) до позиции end (исключительно), указанной строкой str.
+
+StringBuilder sb = new StringBuilder("Hello, world!");
+sb.replace(0, 5, "Hi"); // "Hi, world!"
+
+reverse(): переворачивает символы в текущем StringBuilder объекте.
+StringBuilder sb = new StringBuilder("Hello");
+sb.reverse(); // "olleH"
+
+length(): возвращает текущую длину (количество символов) StringBuilder объекта.
+
+StringBuilder sb = new StringBuilder("Hello");
+int length = sb.length(); // 5
+
+toString(): преобразует текущий StringBuilder объект в объект класса String и возвращает его в виде строки.
+StringBuilder sb = new StringBuilder("Hello");
+String str = sb.toString(); // "Hello"
+
+дополнительный Пример использования класса StringBuilder:
+
+public class StringBuilderExample {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder("Hello");
+
+        // Метод append() для добавления символов в конец строки
+        sb.append(", world!");
+        System.out.println(sb.toString()); // "Hello, world!"
+
+        // Метод delete() для удаления символов из строки
+        sb.delete(7, 13);
+        System.out.println(sb.toString()); // "Hello!"
+
+        // Метод insert() для вставки символов внутрь строки
+        sb.insert(5, " Java");
+        System.out.println(sb.toString()); // "Hello Java!"
+
+        // Метод replace() для замены символов в строке
+        sb.replace(6, 10, "is");
+        System.out.println(sb.toString()); // "Hello is!"
+
+        // Метод reverse() для разворота строки
+        sb.reverse();
+        System.out.println(sb.toString()); // "!si olleH"
+    }
+}
+
+Объединение двух строк с разделителем с использованием StringBuilder:
+
+public class StringBuilderExample {
+    public static void main(String[] args) {
+        String str1 = "Hello";
+        String str2 = "world";
+
+        String result = joinStrings(str1, str2, ", "); // вызов метода joinStrings()
+        System.out.println(result); // "Hello, world"
+    }
+
+    public static String joinStrings(String str1, String str2, String delimiter) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(str1).append(delimiter).append(str2);
+        return sb.toString();
+    }
+}
+
+IV. Форматирование строк
+
+1) Использование метода format() для форматирования строк
+Форматирование строк - это процесс создания строк с определенным форматом или структурой. В Java, для форматирования
+строк, можно использовать класс String.format() или класс java.util.Formatter. Ниже приведен пример использования этих
+классов для форматирования строк.
+
+Использование String.format()
+
+String name = "Alice";
+int age = 30;
+double height = 5.6;
+
+// Форматирование строки с использованием спецификаторов формата
+String formattedString = String.format("Привет, меня зовут %s, мне %d лет и мой рост %.2f м.", name, age, height);
+System.out.println(formattedString);
+
+Результат:
+
+Привет, меня зовут Alice, мне 30 лет и мой рост 5.60 м.
+
+В примере выше используются спецификаторы формата %s, %d и %.2f для подстановки значения переменных name, age и height
+соответственно. %s - для строк, %d - для целых чисел, %f - для чисел с плавающей точкой, а %.2f - для чисел с плавающей
+точкой с двумя знаками после запятой.
+
+Использование java.util.Formatter
+
+String name = "Bob";
+int age = 25;
+double height = 6.1;
+
+// Форматирование строки с использованием объекта Formatter
+Formatter formatter = new Formatter();
+formatter.format("Привет, меня зовут %s, мне %d лет и мой рост %.2f м.", name, age, height);
+String formattedString = formatter.toString();
+formatter.close();
+
+System.out.println(formattedString);
+
+Результат:
+
+Привет, меня зовут Bob, мне 25 лет и мой рост 6.10 м.
+
+Здесь также используются спецификаторы формата %s, %d и %.2f для форматирования строки с подстановкой значений
+переменных.
+
+Задачи для закрепления:
+
+Напишите программу, которая форматирует строку с использованием спецификаторов формата для отображения текущей даты и времени в определенном формате.
+Напишите программу, которая форматирует строку с использованием объекта Formatter для отображения информации о продукте (название, цена, количество) в виде табличных данных.
+
+2) Работа с плейсхолдерами и флагами форматирования
+При форматировании строк в Java с использованием плейсхолдеров и флагов форматирования можно более гибко настроить
+вывод данных. Ниже приведены примеры использования плейсхолдеров и флагов форматирования.
+
+Использование плейсхолдеров:
+
+String name = "Alice";
+int age = 30;
+
+// Использование плейсхолдера %s для строки и %d для целого числа
+String formattedString = String.format("Привет, меня зовут %s и мне %d лет.", name, age);
+System.out.println(formattedString);
+
+Результат:
+Привет, меня зовут Alice и мне 30 лет.
+
+В примере выше используются плейсхолдеры %s для строк и %d для целых чисел, чтобы подставить значения переменных name
+и age соответственно.
+
+Использование флагов форматирования:
+double price = 19.99;
+
+// Использование флага форматирования для выравнивания и указания количества знаков после запятой
+String formattedString = String.format("Цена: $%8.2f", price);
+System.out.println(formattedString);
+
+Результат:
+Цена: $   19.99
+
+В примере выше используется флаг форматирования %8.2f, где 8 - это ширина поля,
+а 2 - количество знаков после запятой. Это позволяет выровнять значение переменной price по правому краю поля шириной 8
+символов и указать 2 знака после запятой.
+
+3) Использование класса MessageFormat
+Класс MessageFormat в Java предоставляет возможности форматирования строк на основе шаблонов с плейсхолдерами.
+Он предназначен для локализации и форматирования сообщений с поддержкой разных языков и региональных настроек. Вот
+примеры использования класса MessageFormat:
+
+import java.text.MessageFormat;
+
+public class MessageFormatExample {
+    public static void main(String[] args) {
+        String name = "Alice";
+        int age = 30;
+
+        // Использование класса MessageFormat с плейсхолдерами {0}, {1} и т.д.
+        String pattern = "Привет, меня зовут {0} и мне {1} лет.";
+        String formattedString = MessageFormat.format(pattern, name, age);
+        System.out.println(formattedString);
+    }
+}
+
+Результат:
+Привет, меня зовут Alice и мне 30 лет.
+
+В примере выше мы создали шаблон строки с плейсхолдерами {0} и {1} для подстановки значений переменных name и age
+соответственно с использованием метода format() класса MessageFormat. Индексы плейсхолдеров начинаются с 0, так что для
+подстановки первого аргумента используется {0}, для второго - {1} и т.д.
+
+Класс MessageFormat также поддерживает различные типы форматирования, такие как числа, даты, времена и другие.
+Вот примеры использования форматирования чисел и дат:
+
+import java.text.MessageFormat;
+import java.util.Date;
+
+public class MessageFormatExample {
+    public static void main(String[] args) {
+        double price = 19.99;
+        Date date = new Date();
+
+        // Использование форматирования числа и даты с помощью MessageFormat
+        String pattern1 = "Цена: {0,number,currency}";
+        String pattern2 = "Дата: {0,date,full}";
+
+        String formattedString1 = MessageFormat.format(pattern1, price);
+        String formattedString2 = MessageFormat.format(pattern2, date);
+
+        System.out.println(formattedString1);
+        System.out.println(formattedString2);
+    }
+}
+
+
+Результат:
+Цена: $19.99
+Дата: Monday, April 17, 2023
+
+В примере выше мы использовали форматирование числа с использованием паттерна {0,number,currency},
+где 0 - это индекс аргумента, number - тип форматирования (в данном случае число), и currency - стиль форматирования
+(денежный формат). Также мы использовали форматирование даты с использованием паттерна {0,date,full},
+где date - тип форматирования (в данном случае дата), и full - стиль форматирования (полный формат даты).
+
+Задача для закрепления:
+
+Напишите небольшую программу, которая будет запрашивать у пользователя его имя, возраст и город проживания,
+а затем используя класс MessageFormat, форматировать и выводить сообщение в следующем формате:
+
+Привет, меня зовут {0}, мне {1} лет, и я живу в городе {2}.
+
+import java.text.MessageFormat;
+import java.util.Scanner;
+
+public class GreetingMessage {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Ввод данных от пользователя
+        System.out.print("Введите ваше имя: ");
+        String name = scanner.nextLine();
+        System.out.print("Введите ваш возраст: ");
+        int age = scanner.nextInt();
+        scanner.nextLine(); // Очистка буфера после ввода числа
+        System.out.print("Введите ваш город проживания: ");
+        String city = scanner.nextLine();
+
+        // Форматирование и вывод сообщения
+        String pattern = "Привет, меня зовут {0}, мне {1} лет, и я живу в городе {2}.";
+        String formattedString = MessageFormat.format(pattern, name, age, city);
+        System.out.println(formattedString);
+    }
+}
+Пример работы программы:
+
+Введите ваше имя: Alice
+Введите ваш возраст: 30
+Введите ваш город проживания: New York
+Привет, меня зовут Alice, мне 30 лет, и я живу в городе New York.
+
+V. Задачи для закрепления в файле task.txt
+
+VI. Заключение
+
+В данной лекции мы рассмотрели основные аспекты работы с классом String в языке программирования Java. Мы изучили
+различные методы этого класса, такие как concat(), indexOf(), lastIndexOf(), replace(), replaceAll(), toLowerCase(),
+toUpperCase(), charAt(), length(), substring(), trim(), startsWith(), endsWith() и split().
+Мы также рассмотрели работу с классом StringBuilder для более эффективной работы со строками, особенно в случаях,
+когда требуется множественные изменения в строке.
+
+Далее, мы ознакомились с регулярными выражениями в Java, которые предоставляют мощный инструмент для работы с
+текстовыми данными, позволяя выполнять сложные операции по поиску и замене текста на основе определенных шаблонов.
+
+Также, мы изучили работу с форматированием строк в Java с использованием класса MessageFormat, который предоставляет
+удобный способ форматирования строк с плейсхолдерами и флагами форматирования.
+
+Важно заметить, что работа с текстом и строками является важной частью практически любого программистского проекта,
+и хорошее понимание работы с классом String и регулярными выражениями является необходимым навыком для разработчика
+Java. Освоение этих тем позволит более эффективно и удобно работать с текстовыми данными в своих Java-проектах.
